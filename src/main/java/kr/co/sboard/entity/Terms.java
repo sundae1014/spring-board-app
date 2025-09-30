@@ -1,25 +1,27 @@
-package kr.co.sboard.dto;
+package kr.co.sboard.entity;
 
 
 import jakarta.persistence.*;
-import kr.co.sboard.entity.Terms;
+import kr.co.sboard.dto.TermsDTO;
 import lombok.*;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Builder
-public class TermsDTO {
+@Entity
+@Table(name = "SB_TERMS")
+public class Terms {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int no;
     private String terms;
     private String privacy;
 
-    public Terms toEntity() {
-        return Terms.builder()
+    public TermsDTO toDTO() {
+        return TermsDTO.builder()
                 .no(no)
                 .terms(terms)
                 .privacy(privacy)
